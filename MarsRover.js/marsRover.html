@@ -21,26 +21,25 @@
     <script src="jquery-2.0.3.min.js"></script> 
     <script type="text/javascript">
         var grid = new Grid(10, 10);
-        var startingx = Math.floor(Math.random() * 11);
-        var startingy = Math.floor(Math.random() * 11);
+        var startingx = Math.floor(Math.random() * 10);
+        var startingy = Math.floor(Math.random() * 10);
         var startingLocation = new Coordinate(startingx, startingy);
         var rover = new Rover(startingLocation, "North", grid);
         
         function draw() {
-            var html = "<table>";
+            var gridElement = $('#grid');
+            gridElement.empty();
             for (var i = 0; i < 10; i++) {
-                html += "<tr>"
+                var row = $('<tr><\tr>');
                 for (var j = 0; j < 10; j++) {
                     if (i == rover.currentLocation.x && j == rover.currentLocation.y)
-                        html += "<td class=" + "\"highlight\"" + "></td> ";
+                        row.append($("<td class=" + "\"highlight\"" + "></td> "));
                     else
-                    html += "<td></td>"
+                        row.append($('<td></td>'));
                 }
-                html += "</tr>";
+
+                gridElement.append(row);
             }
-            html += "</table>";
-            
-            $('#grid').html(html);
         }
 
         $(document).ready(draw);
@@ -51,7 +50,9 @@
             });
     </script>
 
-    <div id="grid"></div>
+    <div>
+     <table id="grid"></table>
+    </div>
 </body>
 </html>
 

@@ -45,6 +45,3 @@
             this.moveBackwards();
     }
 }
-
-
-
