@@ -1,0 +1,57 @@
+﻿<!DOCTyPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html><!DOCTyPE html>
+<html>
+<head>
+    <title>Mars Rover</title>
+    <link rel="stylesheet" href="grid.css" />
+</head>
+<body>
+    <script src="grid.js"></script>
+    <script src="rover.js"></script>
+    <script src="coordinate.js"></script>
+    <script src="jquery-2.0.3.min.js"></script> 
+    <script type="text/javascript">
+        var grid = new Grid(10, 10);
+        var startingx = Math.floor(Math.random() * 11);
+        var startingy = Math.floor(Math.random() * 11);
+        var startingLocation = new Coordinate(startingx, startingy);
+        var rover = new Rover(startingLocation, "North", grid);
+        
+        function draw() {
+            var html = "<table>";
+            for (var i = 0; i < 10; i++) {
+                html += "<tr>"
+                for (var j = 0; j < 10; j++) {
+                    if (i == rover.currentLocation.x && j == rover.currentLocation.y)
+                        html += "<td class=" + "\"highlight\"" + "></td> ";
+                    else
+                    html += "<td></td>"
+                }
+                html += "</tr>";
+            }
+            html += "</table>";
+            
+            $('#grid').html(html);
+        }
+
+        $(document).ready(draw);
+
+        $(document).on('keyup', function (e) {
+            rover.takeCommands(e.keyCode);
+            draw();
+            });
+    </script>
+
+    <div id="grid"></div>
+</body>
+</html>
+
