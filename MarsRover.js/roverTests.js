@@ -1,5 +1,12 @@
-﻿test("MovingForward_ChangesPosition", function () {
-    var grid = new Grid(10, 10);
+﻿var grid;
+
+module("Mars Rover", {
+    setup: function () {
+        grid = new Grid(10, 10);
+    }
+});
+
+test("MovingForward_ChangesPosition", function () {
     var rover = new Rover(new Coordinate(0, 0), "North", grid);
     rover.moveForward();
 
@@ -8,7 +15,6 @@
 });
 
 test("MovingBackward_ChangesPosition", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "North", grid);
     rover.moveBackwards();
 
@@ -17,7 +23,6 @@ test("MovingBackward_ChangesPosition", function () {
 });
 
 test("WhenFacingNorth_TurnRight_AssertFacingEast", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "North", grid);
     rover.turnRight();
 
@@ -25,7 +30,6 @@ test("WhenFacingNorth_TurnRight_AssertFacingEast", function () {
 });
 
 test("WhenFacingEast_TurnRight_AssertFacingSouth", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "East", grid);
     rover.turnRight();
 
@@ -33,7 +37,6 @@ test("WhenFacingEast_TurnRight_AssertFacingSouth", function () {
 });
 
 test("WhenFacingSouth_TurnRight_AssertFacingWest", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "South", grid);
     rover.turnRight();
 
@@ -41,7 +44,6 @@ test("WhenFacingSouth_TurnRight_AssertFacingWest", function () {
 });
 
 test("WhenFacingWest_TurnRight_AssertFacingNorth", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "West", grid);
     rover.turnRight();
 
@@ -49,7 +51,6 @@ test("WhenFacingWest_TurnRight_AssertFacingNorth", function () {
 });
 
 test("WhenFacingNorth_TurnLeft_AssertFacingWest", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "North", grid);
     rover.turnLeft();
 
@@ -57,7 +58,6 @@ test("WhenFacingNorth_TurnLeft_AssertFacingWest", function () {
 });
 
 test("WhenFacingWest_TurnLeft_AssertFacingSouth", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "West", grid);
     rover.turnLeft();
 
@@ -65,7 +65,6 @@ test("WhenFacingWest_TurnLeft_AssertFacingSouth", function () {
 });
 
 test("WhenFacingSouth_TurnLeft_AssertFacingEast", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "South", grid);
     rover.turnLeft();
 
@@ -73,7 +72,6 @@ test("WhenFacingSouth_TurnLeft_AssertFacingEast", function () {
 });
 
 test("WhenFacingEast_TurnLeft_AssertFacingNorth", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(0, 1), "East", grid);
     rover.turnLeft();
 
@@ -81,7 +79,6 @@ test("WhenFacingEast_TurnLeft_AssertFacingNorth", function () {
 });
 
 test("TakeCommand_Forward", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(1, 1), "North", grid);
     rover.takeCommands(38);
 
@@ -90,7 +87,6 @@ test("TakeCommand_Forward", function () {
 });
 
 test("TakeCommand_Backward", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(1, 1), "North", grid);
     rover.takeCommands(40);
 
@@ -99,7 +95,6 @@ test("TakeCommand_Backward", function () {
 });
 
 test("TakeCommand_TurnRight", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(1, 1), "North", grid);
     rover.takeCommands(39);
 
@@ -107,42 +102,8 @@ test("TakeCommand_TurnRight", function () {
 });
 
 test("TakeCommand_TurnLeft", function () {
-    var grid = new Grid(10, 10);
     var rover = new Rover(new Coordinate(1, 1), "North", grid);
     rover.takeCommands(37);
 
     equal("West", rover.direction);
 });
-
-
-//[TestMethod]
-//public void TakeCommand_TurnLeft()
-//{
-//var grid = new Grid(3, 3);
-//var rover = new Rover(new Coordinate(1, 1), Direction.North, grid);
-//rover.TakeCommands("l");
-
-//Assert.AreEqual(Direction.West, rover.Direction);
-//}
-
-//[TestMethod]
-//public void TakeCommand_MoveForawardTwoSpaces()
-//{
-//var grid = new Grid(4, 4);
-//var rover = new Rover(new Coordinate(1, 1), Direction.North, grid);
-//rover.TakeCommands("ff");
-
-//Assert.AreEqual(1, rover.Location.X);
-//Assert.AreEqual(3, rover.Location.Y);
-//}
-
-//[TestMethod]
-//public void TakeCommand_MoveForawardOneSpaceBackwardOneSpace()
-//{
-//var grid = new Grid(4, 4);
-//var rover = new Rover(new Coordinate(1, 1), Direction.North, grid);
-//rover.TakeCommands("fb");
-
-//Assert.AreEqual(1, rover.Location.X);
-//Assert.AreEqual(1, rover.Location.Y);
-//}

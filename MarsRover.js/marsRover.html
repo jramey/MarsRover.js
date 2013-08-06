@@ -26,14 +26,16 @@
         var startingLocation = new Coordinate(startingx, startingy);
         var rover = new Rover(startingLocation, "North", grid);
         
-        function draw() {
+        function renderHtml() {
             var gridElement = $('#grid');
             gridElement.empty();
+            gridElement.append($('<table></table>'));
+
             for (var i = 0; i < 10; i++) {
                 var row = $('<tr><\tr>');
                 for (var j = 0; j < 10; j++) {
                     if (i == rover.currentLocation.x && j == rover.currentLocation.y)
-                        row.append($("<td class=" + "\"highlight\"" + "></td> "));
+                        row.append($('<td class=' + '"highlight"' + '></td>'));
                     else
                         row.append($('<td></td>'));
                 }
@@ -42,17 +44,15 @@
             }
         }
 
-        $(document).ready(draw);
+        $(document).ready(renderHtml);
 
         $(document).on('keyup', function (e) {
             rover.takeCommands(e.keyCode);
-            draw();
+            renderHtml();
             });
     </script>
 
-    <div>
-     <table id="grid"></table>
-    </div>
+    <div id="grid"></div>
 </body>
 </html>
 
